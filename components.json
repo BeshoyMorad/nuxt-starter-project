@@ -5,7 +5,7 @@
   "typescript": true,
   "tailwind": {
     "config": "",
-    "css": "src/css/index.css",
+    "css": "app/assets/css/index.css",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""

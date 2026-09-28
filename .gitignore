@@ -10,6 +10,13 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+
+# Nuxt
+.nuxt
+.output
+.data
+.nitro
+.cache
 .env
 *.local
 

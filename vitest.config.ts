@@ -1,18 +1,21 @@
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vitest/config';
-import vue from '@vitejs/plugin-vue';
+import { defineVitestConfig } from '@nuxt/test-utils/config';
 
-export default defineConfig({
-  plugins: [vue()],
+export default defineVitestConfig({
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./tests/setup.ts'],
-  },
-  resolve: {
-    alias: {
-      '@/tests': fileURLToPath(new URL('./tests', import.meta.url)),
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    environment: 'nuxt',
+    environmentOptions: {
+      nuxt: {
+        domEnvironment: 'jsdom',
+        overrides: {
+          runtimeConfig: {
+            public: { apiBaseUrl: 'http://localhost:3000/api' },
+          },
+        },
+      },
     },
+    setupFiles: ['./tests/setup.ts'],
+    // Node 25 ships an experimental global `localStorage` that shadows jsdom's.
+    execArgv: ['--no-experimental-webstorage'],
   },
 });
