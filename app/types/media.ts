@@ -33,7 +33,7 @@ export interface ExtractMediaPayloadOptions {
 }
 
 /** Storage bucket category accepted by the presigned-URL endpoint. */
-export type StorageServiceType = 'PHOTO';
+export type StorageServiceType = 'PHOTO' | 'TOKENIZATION';
 
 export interface UploadImagePayload {
   serviceType: StorageServiceType;

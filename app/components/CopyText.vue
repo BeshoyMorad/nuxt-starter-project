@@ -7,16 +7,18 @@
     defineProps<{
       /** The text that will be copied to clipboard and displayed. */
       text: string;
+      /** Value copied instead of `text`, e.g. a full address shown shortened. */
+      copyValue?: string;
       /** Extra classes applied to the root button element. */
       class?: string;
     }>(),
-    { class: '' }
+    { class: '', copyValue: undefined }
   );
 
   const isCopied = ref(false);
 
   async function copy() {
-    copyToClipboard(props.text);
+    copyToClipboard(props.copyValue ?? props.text);
 
     isCopied.value = true;
     setTimeout(() => {

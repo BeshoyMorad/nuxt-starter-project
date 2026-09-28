@@ -51,6 +51,23 @@ export interface Token {
   };
 }
 
+/** Vault master wallet, used to fill the token owner address. */
+export interface MasterWallet {
+  id: number;
+  publicAddress: string;
+}
+
+/** Gas station wallet that pays deployment fees on one network. */
+export interface GasStationWallet {
+  id: number;
+  balance: string;
+  asset: {
+    id: number;
+    name: string;
+    symbol: string;
+  };
+}
+
 // ----------------------------------------------------------------------
 
 export interface TokenFilter {

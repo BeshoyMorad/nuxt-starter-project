@@ -3,6 +3,8 @@ export type DefaultPermissions = 'list' | 'detailed_view' | 'create' | 'update' 
 /** Resource name → allowed actions. Add a key per resource the backend protects. */
 export interface AppPermissions {
   admins: DefaultPermissions;
+  assets: 'listView' | 'create' | 'update';
+  securityTokens: 'listView' | 'create';
 }
 
 export type PermissionModel = keyof AppPermissions;

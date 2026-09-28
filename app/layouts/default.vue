@@ -48,7 +48,7 @@
               <span
                 class="flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
               >
-                <img src="@/assets/images/logo.png" alt="" />
+                <NuxtImg src="/images/logo.png" alt="" width="32" height="32" />
               </span>
 
               <span class="hidden font-semibold lg:block"> Nuxt Starter </span>

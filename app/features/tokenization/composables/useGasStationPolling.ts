@@ -1,8 +1,8 @@
 /* eslint-disable max-lines-per-function */
 import { ref, computed, watch, onMounted, onUnmounted, type Ref } from 'vue';
 import { formatNumber } from '@/utils/formatter';
-import { gasStationService } from '@/features/fees/services/gas-station.service';
-import type { GasStationWallet } from '@/features/fees/types';
+import { gasStationService } from '@/features/tokenization/services/gas-station';
+import type { GasStationWallet } from '@/features/tokenization/types';
 
 const POLLING_INTERVAL_MS = 5000;
 
@@ -78,8 +78,8 @@ export function useGasStationPolling(
 
   const availableBalanceText = computed(() => {
     if (!gasStationCategoryId.value || !networkId.value) return '';
-    if (maxBalance.value && maxBalance.value.length > 0) {
-      const item = maxBalance.value[0];
+    const item = maxBalance.value?.[0];
+    if (item) {
       return `${formatNumber(Number(item.balance), { maximumFractionDigits: 6 })} ${item.asset.symbol}`;
     }
     return 'No Available Balance';

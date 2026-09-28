@@ -16,6 +16,13 @@ export const paths = {
     demo: 'demo',
     assets: 'assets',
   },
+  tokenization: {
+    root: 'tokenization',
+    create: 'tokenization-create',
+  },
+  vaults: {
+    details: 'vault-details',
+  },
   componentsPaths,
   formsPaths,
   composablesPaths,

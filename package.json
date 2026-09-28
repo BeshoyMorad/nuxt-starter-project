@@ -24,6 +24,7 @@
     "@iconify/tailwind4": "^1.2.3",
     "@internationalized/date": "^3.12.2",
     "@number-flow/vue": "^0.5.0",
+    "@nuxt/image": "^2.1.0",
     "@nuxtjs/i18n": "^10.6.0",
     "@pinia/nuxt": "^1.0.2",
     "@tailwindcss/vite": "^4.3.0",

@@ -36,7 +36,7 @@
       <div
         class="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-indigo-500/10 text-2xl font-bold text-indigo-500"
       >
-        <img
+        <NuxtImg
           v-if="profile.avatarUrl"
           :src="profile.avatarUrl"
           :alt="profile.name"

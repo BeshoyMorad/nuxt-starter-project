@@ -10,12 +10,14 @@ export { default as Tooltip } from './tooltip/Tooltip.vue';
 // Custom Components
 export { default as CopyText } from './CopyText.vue';
 export { default as EntityAvatar } from './EntityAvatar.vue';
+export { default as ErrorAlert } from './ErrorAlert.vue';
 export { default as ErrorBoundary } from './ErrorBoundary.vue';
 export { default as ExceptionState } from './ExceptionState.vue';
 export { default as PageWrapper } from './PageWrapper.vue';
 export { default as StatusBadge } from './StatusBadge.vue';
 export { default as Tabs } from './Tabs.vue';
 export { default as LanguageSwitcher } from './LanguageSwitcher.vue';
+export { default as WalletAddress } from './WalletAddress.vue';
 
 // PlaceHolders
 export { default as EmptyPlaceholder } from './placeholders/EmptyPlaceholder.vue';

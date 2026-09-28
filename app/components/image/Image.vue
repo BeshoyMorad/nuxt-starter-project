@@ -17,56 +17,33 @@
 
   const { isDark } = useDarkTheme();
 
+  // Built-in placeholders live in public/images.
+  const placeholderName = computed(() => (isDark.value ? 'dark-placeholder' : 'light-placeholder'));
+
   const resolvedFallback = computed(
-    () =>
-      props.fallback ??
-      (isDark.value
-        ? '@/assets/images/dark-placeholder.webp'
-        : '@/assets/images/light-placeholder.webp')
+    () => props.fallback ?? `/images/${placeholderName.value}.webp`
   );
 
   /** Density srcset for built-in placeholders only (custom `fallback` is a single URL). */
   const fallbackSrcset = computed(() => {
     if (props.fallback) return undefined;
-    return isDark.value
-      ? '@/assets/images/dark-placeholder.webp 1x, @/assets/images/dark-placeholder@2x.webp 2x'
-      : '@/assets/images/light-placeholder.webp 1x, @/assets/images/light-placeholder@2x.webp 2x';
+    const name = placeholderName.value;
+    return `/images/${name}.webp 1x, /images/${name}@2x.webp 2x`;
   });
 
-  const isUsingFallback = ref(!props.src);
-  const currentSrc = ref(props.src || resolvedFallback.value);
+  const hasFailed = ref(false);
 
   watch(
     () => props.src,
-    (newSrc) => {
-      if (newSrc) {
-        currentSrc.value = newSrc;
-        isUsingFallback.value = false;
-      } else {
-        currentSrc.value = resolvedFallback.value;
-        isUsingFallback.value = true;
-      }
+    () => {
+      hasFailed.value = false;
     }
   );
 
-  watch(resolvedFallback, () => {
-    if (isUsingFallback.value) {
-      currentSrc.value = resolvedFallback.value;
-    }
-  });
-
-  function handleError() {
-    if (isUsingFallback.value) return;
-    currentSrc.value = resolvedFallback.value;
-    isUsingFallback.value = true;
-  }
+  const isUsingFallback = computed(() => !props.src || hasFailed.value);
 </script>
 
 <template>
-  <img
-    :src="currentSrc"
-    :srcset="isUsingFallback ? fallbackSrcset : undefined"
-    :alt="alt"
-    @error="handleError"
-  />
+  <img v-if="isUsingFallback" :src="resolvedFallback" :srcset="fallbackSrcset" :alt="alt" />
+  <NuxtImg v-else :src="src" :alt="alt" @error="hasFailed = true" />
 </template>

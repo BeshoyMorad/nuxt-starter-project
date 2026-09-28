@@ -22,4 +22,28 @@ export const QUERY_KEYS = {
     all: () => ['starter'] as const,
     profile: () => [...QUERY_KEYS.starter.all(), 'profile'] as const,
   },
+  networks: {
+    all: () => ['networks'] as const,
+    list: () => [...QUERY_KEYS.networks.all(), 'list'] as const,
+  },
+  assets: {
+    all: () => ['assets'] as const,
+    list: () => [...QUERY_KEYS.assets.all(), 'list'] as const,
+    allAssets: () => [...QUERY_KEYS.assets.all(), 'all-assets'] as const,
+  },
+  tokenization: {
+    all: () => ['tokenization'] as const,
+    list: () => [...QUERY_KEYS.tokenization.all(), 'list'] as const,
+    detail: (id: number | string) =>
+      [...QUERY_KEYS.tokenization.all(), 'detail', String(id)] as const,
+    networks: () => [...QUERY_KEYS.tokenization.all(), 'networks'] as const,
+  },
+  gasStation: {
+    all: () => ['gas-station'] as const,
+    categories: () => [...QUERY_KEYS.gasStation.all(), 'categories'] as const,
+  },
+  vaults: {
+    all: () => ['vaults'] as const,
+    list: () => [...QUERY_KEYS.vaults.all(), 'list'] as const,
+  },
 } as const;

@@ -76,7 +76,7 @@
         <div class="flex shrink-0 items-center gap-4">
           <Button
             :test-id="TEST_IDS.tokenization.filterBtn"
-            variant="outline"
+            outline
             icon="hugeicons--filter"
             @click="openFiltersModal"
           >

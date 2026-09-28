@@ -6,7 +6,7 @@
   import { useGetTokenNetworks } from '@/features/tokenization/composables/useGetTokenNetworks';
   import { useGasStationPolling } from '@/features/tokenization/composables/useGasStationPolling';
   import { useCreateTokenFormState } from '@/features/tokenization/composables/useCreateTokenFormState';
-  import { IMAGE_TYPES } from '@/components/form/image-upload/constants';
+  import { IMAGE_TYPES } from '@/constants/file-upload';
 
   const { networkId, gasStationCategoryId, isNFT } = useCreateTokenFormState();
 

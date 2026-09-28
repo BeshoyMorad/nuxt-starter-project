@@ -13,7 +13,7 @@
 
 <template>
   <div class="bg-background flex min-h-screen flex-col items-center justify-center p-8 text-center">
-    <img
+    <NuxtImg
       v-if="image"
       :src="image"
       alt="Exception state"

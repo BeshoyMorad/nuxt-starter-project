@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { Button } from '@/components';
-  import { DataRow } from '@/features/vaults/features/transactions/components';
-  import type { DetailRow } from '@/features/vaults/features/transactions/utils/transaction-detail-utils';
+  import DataRow from '@/features/tokenization/components/DataRow.vue';
+  import type { DetailRow } from '@/features/tokenization/utils/detail-row';
 
   defineProps<{
     rows: DetailRow[];

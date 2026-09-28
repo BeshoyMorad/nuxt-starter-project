@@ -7,7 +7,7 @@
   import { apiRoute } from '@/lib/api/endpoints';
   import SwitchTooltip from '@/features/tokenization/components/SwitchTooltip.vue';
   import SolanaMetadata from './SolanaMetadata.vue';
-  import { VAULT_TYPES } from '@/features/vaults/constants';
+  import { VAULT_TYPES } from '@/features/tokenization/constants/vaults';
 
   // ── Form State & Context ──────────────────────────────────────────────────
   const { networkId, vaultId, isNFT, isSolanaNetwork, isCollection } = useCreateTokenFormState();

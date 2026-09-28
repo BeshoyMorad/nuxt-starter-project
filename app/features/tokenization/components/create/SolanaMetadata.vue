@@ -16,12 +16,13 @@
   };
 
   const removeRow = (index: number) => {
-    if (fields.value.length > 1) {
+    const onlyRow = fields.value[0];
+    if (fields.value.length > 1 || !onlyRow) {
       remove(index);
     } else {
       // Reset the only row instead of removing it
-      fields.value[0].value.key = '';
-      fields.value[0].value.value = '';
+      onlyRow.value.key = '';
+      onlyRow.value.value = '';
     }
   };
 </script>
@@ -60,7 +61,7 @@
 
     <Button
       type="button"
-      variant="outline"
+      outline
       icon="hugeicons--plus-sign"
       test-id="add-meta-btn"
       @click="addRow"

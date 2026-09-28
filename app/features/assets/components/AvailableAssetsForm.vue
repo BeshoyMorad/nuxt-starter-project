@@ -100,7 +100,7 @@
     <div class="border-border mt-6 flex justify-end gap-3 pt-4">
       <Button
         type="button"
-        variant="outline"
+        outline
         :test-id="TEST_IDS.assets.availableAssetsForm.cancelBtn"
         class="min-w-28"
         :disabled="isPending"

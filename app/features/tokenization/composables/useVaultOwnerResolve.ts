@@ -1,6 +1,6 @@
 import { watch, ref, type Ref } from 'vue';
 import { error as toastError } from '@/utils/toast';
-import { walletsServices } from '@/features/vaults/features/wallets/services';
+import { vaultsServices } from '@/features/tokenization/services/vaults';
 import { useFormContext } from 'vee-validate';
 import type { CreateTokenFormValues } from '@/features/tokenization/types';
 
@@ -29,13 +29,14 @@ export function useVaultOwnerResolve(
     try {
       isResolving.value = true;
 
-      const { data: wallets } = await walletsServices.getMasterWallets(newVaultId, {
+      const { data: wallets } = await vaultsServices.getMasterWallets(newVaultId, {
         networkId: netId,
         targetId: newVaultId,
       });
 
-      if (wallets.length > 0) {
-        setFieldValue('ownerAddress', wallets[0].publicAddress);
+      const wallet = wallets[0];
+      if (wallet) {
+        setFieldValue('ownerAddress', wallet.publicAddress);
       } else {
         toastError('No coin wallet found for this network in this vault');
         resetField('ownerAddress');

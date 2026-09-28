@@ -31,6 +31,11 @@ export const TokenVerificationStatusProperties: Record<
   TokenVerificationStatus,
   TokenStatusProperty
 > = {
+  PENDING: {
+    text: 'Pending',
+    color: '#ffca8c',
+    icon: 'hugeicons--time-02',
+  },
   VERIFIED: {
     text: 'Verified',
     color: '#86efac',

@@ -21,7 +21,14 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ['@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/i18n'],
+  modules: ['@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/i18n', '@nuxt/image'],
+
+  // <NuxtImg> resizes and converts files from public/ through the built-in IPX server.
+  // Remote images are passed through untouched unless their host is listed in `domains`.
+  image: {
+    format: ['webp'],
+    domains: [],
+  },
 
   // Project code uses explicit imports. Scanning is off so helpers such as the toast
   // `error()` and `warn()` functions are not injected as globals into every file.
