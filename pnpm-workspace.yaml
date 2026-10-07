@@ -1,0 +1,10 @@
+allowBuilds:
+  esbuild: true
+  msw: true
+  vue-demi: true
+
+overrides:
+  '@intlify/shared': 11.4.13
+  '@intlify/core-base': 11.4.13
+  '@intlify/message-compiler': 11.4.13
+  '@intlify/devtools-types': 11.4.13
