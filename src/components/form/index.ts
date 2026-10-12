@@ -19,6 +19,7 @@ import Select from './select/Select.vue';
 import DatePicker from './date-picker/DatePicker.vue';
 import PhoneInput from './phone/PhoneInput.vue';
 import TagsInput from './tags-input/TagsInput.vue';
+import InputColor from './input-color/InputColor.vue';
 
 // ── Loading Skeletons for Async Fields ───────────────────────────────────────
 import InfiniteScrollSelectSkeleton from './infinite-scroll-select/InfiniteScrollSelectSkeleton.vue';
@@ -30,6 +31,7 @@ import type InfiniteScrollSelectComponent from './infinite-scroll-select/Infinit
 import type ImageUploadComponent from './image-upload/ImageUpload.vue';
 import type FileUploadComponent from './file-upload/FileUpload.vue';
 import type EditorComponent from './editor/Editor.vue';
+import type InputColorComponent from './input-color/InputColor.vue';
 
 export interface FormFields {
   Text: typeof InputText;
@@ -47,6 +49,7 @@ export interface FormFields {
   DatePicker: typeof DatePicker;
   Phone: typeof PhoneInput;
   TagsInput: typeof TagsInput;
+  Color: typeof InputColorComponent;
   InfiniteScrollSelect: typeof InfiniteScrollSelectComponent;
   ImageUpload: typeof ImageUploadComponent;
   FileUpload: typeof FileUploadComponent;
@@ -69,6 +72,7 @@ export const Field: FormFields = {
   DatePicker: DatePicker,
   Phone: PhoneInput,
   TagsInput: TagsInput,
+  Color: InputColor,
 
   // ── Heavy / Specialized Fields ─────────────
   InfiniteScrollSelect: defineAsyncComponent({
