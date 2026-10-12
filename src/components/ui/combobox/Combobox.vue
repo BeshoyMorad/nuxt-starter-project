@@ -223,11 +223,7 @@
         </span>
 
         <template v-else-if="multiple">
-          <span
-            v-for="selectedChip in selectedChips"
-            :key="String(selectedChip.value)"
-            @click.stop
-          >
+          <span v-for="selectedChip in selectedChips" :key="String(selectedChip.value)" @click.stop>
             <slot name="chip" :chip="selectedChip" :remove="() => removeChip(selectedChip.value)">
               <span
                 class="bg-bg-default text-text-default inline-flex max-w-full shrink-0 items-center gap-1 rounded-md px-2 py-0.5 text-sm"

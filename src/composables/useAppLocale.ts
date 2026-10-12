@@ -43,8 +43,8 @@ export function useAppLocale() {
     if (!SUPPORTED_LOCALES[locale] || currentLocale.value === locale) return;
     isLoadingLocale.value = true;
     try {
-      if (typeof (i18n).setLocale === 'function') {
-        await (i18n).setLocale(locale);
+      if (typeof i18n.setLocale === 'function') {
+        await i18n.setLocale(locale);
       } else {
         i18n.locale.value = locale;
       }

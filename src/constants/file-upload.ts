@@ -104,4 +104,3 @@ export const IMAGE_EXTENSIONS = new Set(
 
 export const isImageExtension = (nameOrUrl: string): boolean =>
   IMAGE_EXTENSIONS.has(getFileExtension(nameOrUrl));
-

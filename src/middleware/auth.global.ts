@@ -1,4 +1,4 @@
-import paths from "~/router/paths";
+import paths from '~/router/paths';
 
 export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore();

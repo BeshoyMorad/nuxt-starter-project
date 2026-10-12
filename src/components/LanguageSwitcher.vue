@@ -27,7 +27,9 @@
           :key="locale.code"
           :test-id="`locale-option-${locale.code}`"
           class="hover:bg-surface-secondary flex cursor-pointer items-center justify-between rounded-md px-3 py-2 text-sm transition-colors"
-          :class="{ 'bg-surface-secondary/60 font-semibold': locale.code === currentLocaleMeta.code }"
+          :class="{
+            'bg-surface-secondary/60 font-semibold': locale.code === currentLocaleMeta.code,
+          }"
           @click="handleLocaleSelect(locale.code)"
         >
           <div class="flex items-center gap-2.5">

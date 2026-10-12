@@ -25,7 +25,8 @@ export function getAppConfig(): AppConfig {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nuxtApp = (globalThis as any).useNuxtApp?.();
-    const runtime = nuxtApp?.$config || (typeof useRuntimeConfig === 'function' ? useRuntimeConfig() : null);
+    const runtime =
+      nuxtApp?.$config || (typeof useRuntimeConfig === 'function' ? useRuntimeConfig() : null);
     if (runtime?.public) {
       rawApiBaseUrl = (runtime.public.apiBaseUrl as string) || '';
       rawAppEnv = (runtime.public.appEnv as string) || 'development';
@@ -42,7 +43,8 @@ export function getAppConfig(): AppConfig {
         ? process.env.NUXT_PUBLIC_API_BASE_URL || process.env.VITE_API_BASE_URL
         : undefined) ||
       (typeof import.meta !== 'undefined' && import.meta.env
-        ? (import.meta.env.NUXT_PUBLIC_API_BASE_URL as string) || (import.meta.env.VITE_API_BASE_URL as string)
+        ? (import.meta.env.NUXT_PUBLIC_API_BASE_URL as string) ||
+          (import.meta.env.VITE_API_BASE_URL as string)
         : undefined) ||
       'https://www.google.com/';
   }

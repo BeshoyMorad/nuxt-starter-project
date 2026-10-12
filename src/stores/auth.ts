@@ -1,10 +1,15 @@
+import { useQueryClient } from '@tanstack/vue-query';
+
 const ACCESS_TOKEN_STORAGE_KEY = 'app_access_token';
 const REFRESH_TOKEN_STORAGE_KEY = 'app_refresh_token';
 const USER_STORAGE_KEY = 'user';
 
 export const useAuthStore = defineStore('auth', () => {
+  const queryClient = useQueryClient();
   const tokenCookie = useCookie<string | null>(ACCESS_TOKEN_STORAGE_KEY, { default: () => null });
-  const refreshTokenCookie = useCookie<string | null>(REFRESH_TOKEN_STORAGE_KEY, { default: () => null });
+  const refreshTokenCookie = useCookie<string | null>(REFRESH_TOKEN_STORAGE_KEY, {
+    default: () => null,
+  });
   const userCookie = useCookie<unknown>(USER_STORAGE_KEY, { default: () => null });
 
   const accessToken = ref(tokenCookie.value || '');
@@ -31,6 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
     accessToken.value = '';
     refreshToken.value = '';
     user.value = null;
+    queryClient.clear();
     navigateTo('/auth/login');
   };
 
