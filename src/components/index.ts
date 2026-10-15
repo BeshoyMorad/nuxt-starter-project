@@ -26,6 +26,8 @@ export { default as TableErrorState } from './placeholders/TableErrorState.vue';
 export * from './ui/accordion';
 export * from './ui/avatar';
 export * from './ui/button';
+export * from './ui/card';
+export * from './ui/chart';
 export * from './ui/dialog';
 export * from './ui/dropdown-menu';
 export * from './ui/pagination';
@@ -33,3 +35,4 @@ export * from './ui/popover';
 export * from './ui/skeleton';
 export * from './ui/sonner';
 export * from './form';
+

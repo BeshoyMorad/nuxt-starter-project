@@ -35,4 +35,12 @@ export const TEST_IDS = {
     error: 'starter-error',
     noData: 'starter-no-data',
   },
+  charts: {
+    donutCard: 'charts-donut-card',
+    areaCard: 'charts-area-card',
+    barCard: 'charts-bar-card',
+    guidelinesCard: 'charts-guidelines-card',
+  },
 } as const;
+
+

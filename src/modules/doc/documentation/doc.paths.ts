@@ -5,4 +5,6 @@ export const documentationPaths = {
   testId: 'Test-Id',
   envConfig: 'Environment-configuration',
   localization: 'localization',
+  charts: 'Charts',
 };
+
