@@ -1,34 +1,58 @@
-type Theme = 'light' | 'dark';
+import {
+  computed,
+  inject,
+  ref,
+  type App,
+  type InjectionKey,
+  type Ref,
+  type WritableComputedRef,
+} from 'vue';
+import { usePreferredDark } from '@vueuse/core';
+import type { Theme } from '@/constants/theme';
 
-export const DARK_THEME_COOKIE_KEY = 'vue-starter-theme';
+/** Where the user's theme choice lives; the theme plugin provides it with `provideTheme`. */
+export const THEME_CHOICE_KEY: InjectionKey<Ref<Theme | null>> = Symbol('theme-choice');
 
-export const useDarkTheme = () => {
-  const theme = useCookie<Theme>(DARK_THEME_COOKIE_KEY, {
-    default: () => 'light',
-    maxAge: 60 * 60 * 24 * 365,
-    path: '/',
-    sameSite: 'lax',
-  });
+export function provideTheme(app: App, choice: Ref<Theme | null>): void {
+  app.provide(THEME_CHOICE_KEY, choice);
+}
 
-  const isDark = computed({
-    get: () => theme.value === 'dark',
-    set: (value: boolean) => {
-      theme.value = value ? 'dark' : 'light';
+export interface UseDarkThemeReturn {
+  theme: Ref<Theme | null>;
+  isDark: WritableComputedRef<boolean>;
+  toggleDark: () => void;
+}
+
+/**
+ * Light / dark theme composable.
+ * - `theme`: The user's explicit theme choice ('light' | 'dark' | null). null means follow the device.
+ * - `isDark`: Reactive boolean reflecting whether the current applied mode is dark.
+ * - `toggleDark`: Switches between light and dark modes (reversing current effective theme).
+ */
+export function useDarkTheme(): UseDarkThemeReturn {
+  const theme = inject(THEME_CHOICE_KEY, null) ?? ref<Theme | null>(null);
+
+  const preferredDark = usePreferredDark();
+
+  const isDark = computed<boolean>({
+    get: () => {
+      if (theme.value === 'dark') return true;
+      if (theme.value === 'light') return false;
+      return preferredDark.value;
+    },
+    set: (val: boolean) => {
+      theme.value = val ? 'dark' : 'light';
     },
   });
 
-  const toggleDark = () => {
-    isDark.value = !isDark.value;
+  function toggleDark() {
+    const current = theme.value ?? (preferredDark.value ? 'dark' : 'light');
+    theme.value = current === 'dark' ? 'light' : 'dark';
+  }
+
+  return {
+    theme,
+    isDark,
+    toggleDark,
   };
-
-  const resolvedTheme = computed<Theme>(() => (isDark.value ? 'dark' : 'light'));
-
-  useHead({
-    htmlAttrs: {
-      'data-theme': resolvedTheme,
-      'style': computed(() => `color-scheme: ${resolvedTheme.value}`),
-    },
-  });
-
-  return { isDark, toggleDark };
-};
+}

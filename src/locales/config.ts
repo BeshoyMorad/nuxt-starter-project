@@ -12,7 +12,7 @@ export interface LocaleMeta {
 
 export const DEFAULT_LOCALE: LocaleCode = 'en';
 export const FALLBACK_LOCALE: LocaleCode = 'en';
-export const LOCALE_STORAGE_KEY = 'app_language_preference';
+export const LOCALE_COOKIE_KEY = 'app_language_preference';
 
 export const SUPPORTED_LOCALES: Record<LocaleCode, LocaleMeta> = {
   en: {

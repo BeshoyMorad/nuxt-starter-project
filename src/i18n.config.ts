@@ -1,4 +1,4 @@
-import { numberFormats, datetimeFormats } from './locales/index';
+import { numberFormats, datetimeFormats } from './locales';
 
 export default () => ({
   legacy: false,
