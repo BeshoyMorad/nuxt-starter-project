@@ -76,7 +76,8 @@
           <template #trigger>
             <Button
               type="button"
-              :variant="item.isActive?.() ? 'secondary' : 'ghost'"
+              :variant="item.isActive?.() ? 'default' : 'ghost'"
+              :outline="!!item.isActive?.()"
               size="icon-sm"
               :disabled="disabled || (item.disabled ? item.disabled() : false)"
               :test-id="`${testId}-${item.id}-btn`"
@@ -108,7 +109,8 @@
               <template #trigger>
                 <Button
                   type="button"
-                  :variant="editor.isActive('link') ? 'secondary' : 'ghost'"
+                  :variant="editor.isActive('link') ? 'default' : 'ghost'"
+                  :outline="editor.isActive('link')"
                   size="icon-sm"
                   :disabled="disabled"
                   :test-id="`${testId}-link-btn`"

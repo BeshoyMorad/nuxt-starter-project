@@ -1,27 +1,34 @@
-import { useDark, useToggle } from '@vueuse/core';
+type Theme = 'light' | 'dark';
 
-// DON'T FORGET TO UPDATE THIS KEY IN index.html FILE
-export const DARK_THEME_STORAGE_KEY = 'vue-starter-theme';
+export const DARK_THEME_COOKIE_KEY = 'vue-starter-theme';
 
 export const useDarkTheme = () => {
-  const isDark = useDark({
-    selector: 'html',
-    attribute: 'data-theme',
-    valueDark: 'dark',
-    valueLight: 'light',
-    storageKey: DARK_THEME_STORAGE_KEY,
-    initialValue: 'light',
-    onChanged(isDarkVal, defaultHandler) {
-      if (import.meta.client && typeof document !== 'undefined') {
-        defaultHandler(isDarkVal ? 'dark' : 'light');
-        if (document.documentElement) {
-          document.documentElement.style.colorScheme = isDarkVal ? 'dark' : 'light';
-        }
-      }
+  const theme = useCookie<Theme>(DARK_THEME_COOKIE_KEY, {
+    default: () => 'light',
+    maxAge: 60 * 60 * 24 * 365,
+    path: '/',
+    sameSite: 'lax',
+  });
+
+  const isDark = computed({
+    get: () => theme.value === 'dark',
+    set: (value: boolean) => {
+      theme.value = value ? 'dark' : 'light';
     },
   });
 
-  const toggleDark = useToggle(isDark);
+  const toggleDark = () => {
+    isDark.value = !isDark.value;
+  };
+
+  const resolvedTheme = computed<Theme>(() => (isDark.value ? 'dark' : 'light'));
+
+  useHead({
+    htmlAttrs: {
+      'data-theme': resolvedTheme,
+      'style': computed(() => `color-scheme: ${resolvedTheme.value}`),
+    },
+  });
 
   return { isDark, toggleDark };
 };

@@ -1,7 +1,6 @@
 export * from './types';
 export * from './useFormMedia';
 export * from './useUploadImage';
-export * from './useAppLocale';
 export * from './useAuthRedirect';
 export * from './useDarkTheme';
 export * from './useDataInfiniteScroll';

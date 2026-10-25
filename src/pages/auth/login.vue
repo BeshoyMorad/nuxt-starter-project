@@ -6,7 +6,7 @@
 
   const authStore = useAuthStore();
   const { handleRedirect } = useAuthRedirect();
-  const { t } = useAppLocale();
+  const { t } = useI18n();
 
   const email = ref('admin@example.com');
   const password = ref('password123');

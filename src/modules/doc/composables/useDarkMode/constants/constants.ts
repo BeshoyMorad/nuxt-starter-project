@@ -25,7 +25,7 @@ export const USE_DARK_THEME_DOM = {
   persistence: {
     title: 'Theme Persistence',
     description:
-      'The selected theme is automatically stored and restored when the application is loaded again.',
+      'The selected theme is stored in a cookie, so the server renders it on the first load and it is restored on every visit.',
   },
 };
 

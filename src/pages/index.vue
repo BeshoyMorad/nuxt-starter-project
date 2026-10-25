@@ -3,7 +3,7 @@
     title: 'Nuxt 3 Starter Dashboard',
   });
 
-  const { t } = useAppLocale();
+  const { t } = useI18n();
   const authStore = useAuthStore();
   const permissionStore = usePermissionStore();
 

@@ -1,10 +1,25 @@
 <script setup lang="ts">
   /* eslint-disable max-lines */
-  import { useAppLocale } from '@/composables/useAppLocale';
+  import { FALLBACK_LOCALE, SUPPORTED_LOCALES, type LocaleCode } from '@/locales/config';
   import dayjs from 'dayjs';
 
-  const { t, d, n, currentLocale, currentLocaleMeta, isRTL, setLocale, isLoadingLocale } =
-    useAppLocale();
+  const { t, d, n, locale, setLocale } = useI18n();
+
+  const currentLocale = computed(() => locale.value as LocaleCode);
+  const currentLocaleMeta = computed(
+    () => SUPPORTED_LOCALES[currentLocale.value] || SUPPORTED_LOCALES[FALLBACK_LOCALE]
+  );
+  const isRTL = computed(() => currentLocaleMeta.value.direction === 'rtl');
+  const isLoadingLocale = ref(false);
+
+  const changeLocale = async (code: LocaleCode) => {
+    isLoadingLocale.value = true;
+    try {
+      await setLocale(code);
+    } finally {
+      isLoadingLocale.value = false;
+    }
+  };
 
   // Interactive demo states
   const customName = ref('Alex');
@@ -87,7 +102,7 @@
               :class="{
                 'border-primary-500 bg-primary-50 text-primary-700': currentLocale === 'en',
               }"
-              @click="setLocale('en')"
+              @click="changeLocale('en')"
             >
               🇺🇸 English (LTR)
             </Button>
@@ -100,7 +115,7 @@
               :class="{
                 'border-primary-500 bg-primary-50 text-primary-700': currentLocale === 'ar',
               }"
-              @click="setLocale('ar')"
+              @click="changeLocale('ar')"
             >
               🇸🇦 العربية (RTL)
             </Button>
@@ -339,9 +354,7 @@
           <div class="bg-surface-secondary border-border-secondary space-y-2 rounded-lg border p-4">
             <h3 class="text-text-primary font-semibold">{{ t('demo.howToUse.step1Title') }}</h3>
             <pre class="text-text-secondary overflow-x-auto font-mono text-[11px]">
-import { useAppLocale } from '@/composables';
-
-const { t, d, n, currentLocale, isRTL } = useAppLocale();
+const { t, d, n, locale } = useI18n();
 const label = t('common.save');
             </pre>
           </div>
@@ -360,7 +373,7 @@ const label = t('common.save');
           <div class="bg-surface-secondary border-border-secondary space-y-2 rounded-lg border p-4">
             <h3 class="text-text-primary font-semibold">{{ t('demo.howToUse.step3Title') }}</h3>
             <pre class="text-text-secondary overflow-x-auto font-mono text-[11px]">
-const { setLocale } = useAppLocale();
+const { setLocale } = useI18n();
 
 // Switches to Arabic & updates DOM dir="rtl"
 await setLocale('ar');
