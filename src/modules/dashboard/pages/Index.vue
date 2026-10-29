@@ -18,7 +18,7 @@
   import { Form } from 'vee-validate';
   import { toTypedSchema } from '@vee-validate/yup';
   import * as yup from 'yup';
-  import { phoneSchema } from '@/utils/yupSchemas';
+  import { phoneSchema } from '@/lib/yup';
   import { useDarkTheme, useFormMedia } from '@/composables';
   import { info, success } from '@/utils/toast';
   import type { MediaValue } from '@/types/media';
@@ -122,6 +122,7 @@
 <template>
   <div class="space-y-4">
     <div class="flex items-center gap-3">
+      {{ $t('common.back') }}
       <Button test-id="" outline @click="toggleDark()">Toggle Dark Mode</Button>
       <NuxtLink
         to="/dashboard/multi-step-form"

@@ -110,7 +110,8 @@ export const ARCHITECTURE_STRUCTURE_ITEMS = [
   },
   {
     name: 'locales/',
-    description: 'Translation files and localization configuration.',
+    description:
+      'JSON messages in src/locales/{locale}/{namespace}.json, plus the en/ar aggregators, config, and formats.',
   },
   {
     name: 'modules/',

@@ -1,17 +1,24 @@
-import common from './common/ar.json';
-import auth from '@/modules/auth/locales/ar.json';
-import button from '@/modules/doc/components/button/locales/ar.json';
-import { tooltip } from '@/modules/doc/components/tooltip/locales/ar.json';
-import { dialog } from '@/modules/doc/components/dialog/locales/ar.json';
-import { table } from '@/modules/doc/components/table/locales/ar.json';
+import common from './ar/common.json';
+import nav from './ar/nav.json';
+import demo from './ar/demo.json';
+import auth from './ar/auth.json';
+import button from './ar/button.json';
+import tooltip from './ar/tooltip.json';
+import dialog from './ar/dialog.json';
+import table from './ar/table.json';
+import yup from './ar/yup.json';
 
+/** Arabic message tree. Mirror every namespace file in `src/locales/en/`. */
 const ar = {
-  ...common,
+  common,
+  nav,
+  demo,
   auth,
-  tooltip,
   button,
+  tooltip,
   dialog,
   table,
+  yup,
 };
 
 export default ar;

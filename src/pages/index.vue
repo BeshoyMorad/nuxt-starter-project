@@ -77,7 +77,7 @@
           Nuxt 3 Hybrid Enterprise Starter
         </div>
         <h1 class="text-text-primary text-3xl font-extrabold tracking-tight sm:text-4xl">
-          {{ t('welcome') }}
+          {{ t('common.welcome') }}
         </h1>
         <p class="text-text-tertiary text-sm leading-relaxed sm:text-base">
           Engineered for production applications with file-based routing, zero-config auto-imports,

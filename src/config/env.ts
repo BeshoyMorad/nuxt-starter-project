@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 // 1. Schema matching Nuxt environment variables
 const envSchema = yup.object({
-  apiBaseUrl: yup.string().url('apiBaseUrl must be a valid URL').required(),
+  apiBaseUrl: yup.string().required(),
   appEnv: yup.string().oneOf(['development', 'production', 'staging']).default('development'),
   enableDevtools: yup.boolean().default(false),
 });

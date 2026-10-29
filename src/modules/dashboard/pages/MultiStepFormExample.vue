@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { success } from '@/utils/toast';
-  import { phoneSchema } from '@/utils/yupSchemas';
+  import { phoneSchema } from '@/lib/yup';
   import * as yup from 'yup';
   import type { StepDefinition } from '@/components';
   import type { GenericObject } from 'vee-validate';
