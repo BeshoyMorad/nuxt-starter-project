@@ -1,9 +1,22 @@
 import tailwindcss from '@tailwindcss/vite';
+import { generateLocaleTypes } from './scripts/generate-locale-types.ts';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   srcDir: 'src/',
+
+  hooks: {
+    // Keep the `en.ts` / `ar.ts` aggregators in sync with the namespace files.
+    'build:before': () => {
+      generateLocaleTypes();
+    },
+    'builder:watch': (event, path) => {
+      if ((event === 'add' || event === 'unlink') && /locales[/\\](en|ar)[/\\][^/\\]+\.json$/.test(path)) {
+        generateLocaleTypes();
+      }
+    },
+  },
 
   css: ['~/css/index.css'],
 

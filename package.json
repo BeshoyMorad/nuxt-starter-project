@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css}\"",
-    "type-check": "vue-tsc --noEmit",
+    "locales:types": "node scripts/generate-locale-types.ts",
+    "type-check": "pnpm locales:types && vue-tsc --noEmit",
     "test:unit": "vitest",
     "verify": "node scripts/verify.mjs",
     "prepare": "husky"
