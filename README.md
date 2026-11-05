@@ -24,7 +24,7 @@ A modern, production-ready **Nuxt 3** starter project equipped with a comprehens
 │   ├── useAppLocale.ts       # Localization helper composable
 │   ├── useDarkTheme.ts       # Dark mode theme composable
 │   ├── useDataTable.ts       # TanStack table helper composable
-│   └── ...                   # useModal, useNetwork, useMultiStepForm, etc.
+│   └── ...                   # useDialog, useNetwork, useMultiStepForm, etc.
 ├── utils/                    # Auto-imported utility functions
 │   ├── index.ts              # cn (clsx + tailwind-merge) & utilities export
 │   ├── apiError.ts           # API error handling

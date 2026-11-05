@@ -5,7 +5,7 @@ export * from './useAuthRedirect';
 export * from './useDarkTheme';
 export * from './useDataInfiniteScroll';
 export * from './useDataTable';
-export * from './useModal';
+export * from './useDialog';
 export * from './useMultiStepForm';
 export * from './useNetwork';
 export * from './usePostsQuery';
