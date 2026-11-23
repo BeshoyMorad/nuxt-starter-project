@@ -27,7 +27,7 @@ Before creating any component, composable, or util, search for an existing one (
 
 ## Where things live (don't search for these, use them)
 
-- Query keys: `src/lib/query-keys.ts` · Endpoints: `src/lib/api/endpoints.ts` (`apiRoute()`) · API client: `src/lib/api/client.ts` · Table fetch: `src/lib/api/table.ts`
+- Query keys: per-module `src/modules/<module>/<module>.keys.ts` (`createQueryKeys`), merged in `src/lib/query-keys.ts` (`queryKeys`) · Endpoints: `src/lib/api/endpoints.ts` (`apiRoute()`) · API client: `src/lib/api/client.ts` · Table fetch: `src/lib/api/table.ts`
 - Query client (SSR dehydrate/hydrate): `src/plugins/vue-query.ts` · Test IDs: `src/lib/test-ids.ts` · Env: `src/config/env.ts`, `runtimeConfig` in `nuxt.config.ts`
 - Validation: `src/lib/yup/` (client plugin `src/plugins/yup.client.ts`) · Errors: `src/utils/apiError.ts` · Toasts: `src/utils/toast.ts`
 - Formatters: `src/utils/formatter.ts`, `formatText.ts`, `formatStatus.ts` · Class merge: `cn()` from `@/utils`
@@ -39,7 +39,7 @@ Before creating any component, composable, or util, search for an existing one (
 
 - **RTL-first.** Logical Tailwind classes only (`ms-* me-* ps-* pe-* start-* end-* text-start text-end`). Never `ml- mr- pl- pr- left- right- text-left text-right`.
 - **No hard-coded UI strings.** Every label goes in `en` and `ar` JSON, used through `t()`.
-- **Registries, not literals.** Query keys from `QUERY_KEYS`, URLs from `apiRoute()`, test ids from `TEST_IDS` (`data-test-id`), colors from the token file, route names from `paths`.
+- **Registries, not literals.** Query keys from `queryKeys`, URLs from `apiRoute()`, test ids from `TEST_IDS` (`data-test-id`), colors from the token file, route names from `paths`.
 - **Server state in Vue Query, client state in Pinia.** Never copy API data into a store. No manual `try/catch` toasts.
 - **Strict TypeScript.** No `any`, `interface` over `type`, `import type`, `@/` alias instead of `../`. Files under 300 lines.
 

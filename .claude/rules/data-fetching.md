@@ -13,8 +13,12 @@ paths:
 - Build URLs only with `apiRoute('name')` from `@/lib/api/endpoints`. Add new route names to the `routes` object in that file first. No hardcoded `/api/...` strings.
 - Services are small `async` functions in `modules/<feature>/services/index.ts` that return typed payloads. `queryFn` and mapping belong in services or composables, not in components.
 - Server state uses TanStack Vue Query: `useQuery`, `useMutation`, `useInfiniteQuery`. `src/plugins/vue-query.ts` creates the client, dehydrates it during SSR, and hydrates it in the browser. The client is also available as `$queryClient`.
-- Query keys come from the `QUERY_KEYS` registry in `@/lib/query-keys`, for example `QUERY_KEYS.starter.profile()`. Add new keys there before using them. Never inline arrays like `queryKey: ['users', id]`.
-- After a mutation, invalidate through `useQueryClient()` using the registry, for example `invalidateQueries({ queryKey: QUERY_KEYS.users.all() })`. Do not mirror server data in Pinia.
+- Query keys use `@lukemorales/query-key-factory`. Each module owns its keys in `src/modules/<m>/<m>.keys.ts` (`export const usersKeys = createQueryKeys('users', {...})`). `src/lib/query-keys.ts` only merges them with `mergeQueryKeys` into `queryKeys`; register a new module there. Never inline arrays like `queryKey: ['users', id]`.
+  - Static key: `list: null` -> `queryKeys.users.list.queryKey`.
+  - Key with params: `details: (id: string) => [id]` -> `queryKeys.users.details(id).queryKey`. Params go in the array, objects are fine (`list: (filters) => [{ filters }]`).
+  - Whole-module scope for invalidation: `queryKeys.users._def`.
+  - Keep keys only; `queryFn` stays in services/composables (do not use the factory's `queryFn` option).
+- After a mutation, invalidate through `useQueryClient()` using the registry, for example `invalidateQueries({ queryKey: queryKeys.users._def })` (everything in the module) or `queryKeys.users.list.queryKey` (one query and its sub-keys). Do not mirror server data in Pinia.
 - The query client in `src/plugins/vue-query.ts` hashes the active locale into every query. Do not add locale to individual keys.
 - Lists and tables:
   - `useDataTable` for offset pagination.

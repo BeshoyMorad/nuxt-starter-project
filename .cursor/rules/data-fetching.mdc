@@ -1,6 +1,6 @@
 ---
 description: Data fetching (TanStack Query). Mirrors .claude/rules/data-fetching.md
-globs: src/lib/**/*.ts, src/**/services/**/*.ts, src/**/composables/**/*.ts, src/plugins/vue-query.ts, **/*.vue
+globs: src/lib/**/*.ts, src/modules/*/*.keys.ts, src/**/services/**/*.ts, src/**/composables/**/*.ts, src/plugins/vue-query.ts, **/*.vue
 alwaysApply: false
 ---
 

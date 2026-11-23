@@ -1,25 +1,10 @@
-/**
- * Global registry for all Tanstack Query Keys.
- * Use these constants/functions to avoid typos and ensure invalidations target the exact query.
- */
-export const QUERY_KEYS = {
-  auth: {
-    profile: () => ['auth.profile'] as const,
-  },
+import { mergeQueryKeys } from '@lukemorales/query-key-factory';
+import { authKeys } from '@/modules/auth/auth.keys';
+import { starterKeys } from '@/modules/starter/starter.keys';
 
-  users: {
-    all: () => ['users'] as const,
-    list: () => [...QUERY_KEYS.users.all(), 'list'] as const,
-    details: (id: number | string) => [...QUERY_KEYS.users.all(), 'details', String(id)] as const,
-  },
-  corporates: {
-    all: () => ['corporates'] as const,
-    list: () => [...QUERY_KEYS.corporates.all(), 'list'] as const,
-    details: (id: number | string) =>
-      [...QUERY_KEYS.corporates.all(), 'details', String(id)] as const,
-  },
-  starter: {
-    all: () => ['starter'] as const,
-    profile: () => [...QUERY_KEYS.starter.all(), 'profile'] as const,
-  },
-} as const;
+/**
+ * Global registry for all TanStack Query keys.
+ * Each module owns its keys in `<module>/<module>.keys.ts` (createQueryKeys);
+ * this file only merges them. Register a new module's keys here.
+ */
+export const queryKeys = mergeQueryKeys(authKeys, starterKeys);
